@@ -7,7 +7,7 @@ function TodoList({todoList}) {
             <div>
                 <h2>My Todos</h2>
                 <ul>
-                    {todoList.map(todo => <TodoListItem todo={todo}/>)}
+                    {todoList.map(todo => <TodoListItem key={todo.id} todo={todo}/>)}
                 </ul>
             </div>
         </>
