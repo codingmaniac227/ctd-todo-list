@@ -10,6 +10,14 @@ export default function TodosPage({ token }) {
     const [ isTodoListLoading, setIsTodoListLoading ] = useState(false)
 
     const addTodo = async (todoTitle) => {
+        const tempId = Date.now()
+
+        setTodoList(prevTodoList => [
+            { id: tempId, title: todoTitle, isCompleted: false },
+            ...prevTodoList
+        ])
+        console.log(todoList)
+
         const res = await fetch('/api/tasks', {
             method: 'POST',
             body: JSON.stringify({ title: todoTitle, isCompleted: false }),
@@ -25,10 +33,11 @@ export default function TodosPage({ token }) {
         if (!res.ok) {
             throw new Error(data?.message || 'Failed to add todo')
         } else {
-            setTodoList(prevTodoList => [
-                data,
-                ...prevTodoList
-            ])
+            setTodoList(prevTodoList => 
+            prevTodoList.map(todo =>
+                todo.id === tempId ? data : todo
+                )
+            )
         }
     }
 
@@ -133,10 +142,10 @@ export default function TodosPage({ token }) {
 
     return (
         <>
-            {error && (
+            {error != '' && (
                 <>
                     <p><strong>{error}</strong></p>
-                    <button>Clear Error</button>
+                    <button onClick={() => setError('')}>Clear Error</button>
                 </>
             )}
 
