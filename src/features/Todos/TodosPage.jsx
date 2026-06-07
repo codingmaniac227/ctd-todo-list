@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useReducer, useState} from "react";
+import {useCallback, useEffect, useReducer} from "react";
 import TodoForm from "./TodoForm.jsx";
 import TodoList from "./TodoList/TodoList.jsx";
 import { ClipLoader } from "react-spinners";
@@ -6,8 +6,11 @@ import SortBy from "../../shared/SortBy.jsx";
 import { useDebounce } from "../../utils/useDebounce.js";
 import FilterInput from "../../shared/FilterInput.jsx";
 import {initialTodoState, TODO_ACTIONS, todoReducer} from "../../reducers/todoReducer.js";
+import {useAuth} from "../../contexts/AuthContext.jsx";
 
-export default function TodosPage({ token }) {
+export default function TodosPage() {
+
+    const { token } = useAuth()
 
     const [ state, dispatch ] = useReducer(todoReducer, initialTodoState)
     const {
