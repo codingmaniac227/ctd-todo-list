@@ -1,6 +1,9 @@
 import { useState } from "react";
+import {useAuth} from "../contexts/AuthContext.jsx";
 
-export default function Logon({ onSetEmail, onSetToken }) {
+export default function Logon() {
+    const { login } = useAuth();
+
     const [ auth, setAuth ] = useState({
         email: '',
         password: '',
@@ -8,50 +11,30 @@ export default function Logon({ onSetEmail, onSetToken }) {
         isLoggingOn: false
     })
 
+    async function handleSubmit(e) {
+        e.preventDefault()
 
-        const handleSubmit = async (e) => {
-            try {
-                e.preventDefault();
-                setAuth(prevAuthState => ({
-                    ...prevAuthState,
-                    isLoggingOn: true
-                }))
+        setAuth(prev => ({
+            ...prev,
+            isLoggingOn: true,
+            authError: '',
+        }))
 
-                const resp = await fetch('/api/users/logon', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify( {
-                        email: auth.email,
-                        password: auth.password
-                    } )
-                })
+        const result = await login(auth.email, auth.password)
 
-                const data = await resp.json()
-                const { name, csrfToken } = data
-
-                if (resp.status === 200 && data.name && data.csrfToken) {
-
-                    onSetEmail(data.name)
-                    onSetToken(data.csrfToken)
-                } else {
-                    setAuth(prevAuthState => ({
-                        ...prevAuthState,
-                        authError: `Authentication failed: ${data?.message}`
-                    }))
-                }
-            } catch(err) {
-                setAuth(prevAuthState => ({
-                    ...prevAuthState,
-                    authError: `Error: ${err.name} | ${err.message}`
-                }))
-            } finally {
-                setAuth(prevAuthState => ({
-                    ...prevAuthState,
-                    isLoggingOn: false
-                }))
-            }
+        if (!result.success) {
+            setAuth( prev => ({
+                ...prev,
+                authError: result.error
+            }))
         }
+
+        setAuth(prev => ({
+            ...prev,
+            isLoggingOn: false,
+        }))
+    }
+
 
 
     return (
