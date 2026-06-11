@@ -178,7 +178,7 @@ export default function TodosPage() {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': token
                 },
-                credentials: 'icnlude'
+                credentials: 'include'
             })
 
             if (await handleInvalidToken(res)) {
