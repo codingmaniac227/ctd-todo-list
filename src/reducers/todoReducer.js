@@ -169,7 +169,7 @@ export const initialTodoState = {
     todoList: [],
     error: '',
     isTodoListLoading: true,
-    sortBy: 'creationDate',
+    sortBy: 'createdAt',
     sortDirection: 'asc',
     filterTerm: '',
     filterError: '',
