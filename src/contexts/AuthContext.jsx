@@ -11,8 +11,14 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [ email, setEmail ] = useState('')
-    const [ token, setToken ] = useState('')
+    const [ email, setEmail ] = useState(
+        () => sessionStorage.getItem('email') || ''
+    )
+
+    const [ token, setToken ] = useState(
+        () => sessionStorage.getItem('token') || ''
+    )
+
 
     const login = async (userEmail, password) => {
         try {
@@ -27,11 +33,15 @@ export function AuthProvider({ children }) {
         const res = await fetch('/api/users/logon', options)
         const data = await res.json()
 
-        if (res.status === 200 && data.name && data.csrfToken) {
-            setEmail(data.name)
-            setToken(data.csrfToken)
-            return { success: true }
-        } else {
+            if (res.status === 200 && data.name && data.csrfToken) {
+                setEmail(data.name)
+                setToken(data.csrfToken)
+
+                sessionStorage.setItem('email', data.name)
+                sessionStorage.setItem('token', data.csrfToken)
+
+                return { success: true }
+            } else {
             return {
                 success: false,
                 error: `Authentication failed: ${data?.message}`
@@ -61,6 +71,9 @@ export function AuthProvider({ children }) {
 
             setEmail('')
             setToken('')
+
+            sessionStorage.removeItem('email')
+            sessionStorage.removeItem('token')
 
             if (res.ok) {
                 return { success: true }
