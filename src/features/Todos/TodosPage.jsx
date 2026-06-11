@@ -213,13 +213,14 @@ export default function TodosPage() {
                           type: TODO_ACTIONS.FETCH_SUCCESS,
                           payload: tasks
                       })
+                      console.log(tasks)
                   } else if (resp.status === 401) {
                       throw new Error('unauthorized')
                   } else {
                       throw new Error('Something went wrong')
                   }
                 } catch (err) {
-                    if (debouncedFilterTerm || sortBy !== 'creationDate' || sortDirection !== 'desc') {
+                    if (debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc') {
                         dispatch({
                             type: TODO_ACTIONS.FETCH_ERROR,
                             payload: {
