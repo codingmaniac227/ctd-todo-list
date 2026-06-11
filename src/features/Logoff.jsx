@@ -1,10 +1,13 @@
 import {useAuth} from "../contexts/AuthContext.jsx";
 import {useState} from "react";
+import { useNavigate } from "react-router";
 
 export default function Logoff() {
     const { logout } = useAuth()
     const [ error, setError ] = useState('')
     const [ isLoggingOff, setIsLoggingOff ] = useState(false)
+
+    const navigate = useNavigate();
 
     async function handleLogout(e) {
         e.preventDefault()
@@ -15,6 +18,8 @@ export default function Logoff() {
 
         if (!result.success) {
             setError( result.error )
+        } else {
+            navigate("/login")
         }
 
         setIsLoggingOff(false)
