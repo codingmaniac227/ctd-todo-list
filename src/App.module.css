@@ -1,0 +1,23 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+.pageCard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 1rem 1rem;
+    }
+
+    .pageCard {
+        padding: 1.25rem;
+    }
+}

@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--card);
+    color: var(--text);
+}
+
+.input:focus {
+    outline: 3px solid var(--focus-ring);
+    border-color: var(--primary);
+}
