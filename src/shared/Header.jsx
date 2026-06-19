@@ -1,17 +1,28 @@
-import {useAuth} from "../contexts/AuthContext.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
 import Logoff from "../features/Logoff.jsx";
 import Navigation from "./Navigation.jsx";
+import styles from "./Header.module.css";
 
 export default function Header() {
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated } = useAuth();
 
     return (
-        <>
-            <h1>Todo List</h1>
+        <header className={styles.header}>
+            <div className={styles.brandSection}>
+                <h1 className={styles.title}>My Tasks</h1>
+
+                <p className={styles.subtitle}>
+                    Organize, prioritize, and complete your daily work.
+                </p>
+            </div>
+
             <Navigation />
+
             {isAuthenticated && (
-                <Logoff />
+                <div className={styles.actions}>
+                    <Logoff />
+                </div>
             )}
-        </>
-    )
+        </header>
+    );
 }

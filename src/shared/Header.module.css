@@ -1,0 +1,39 @@
+.header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem 1rem;
+}
+
+.brandSection {
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--muted-text);
+    margin-bottom: 0;
+}
+
+.actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .actions {
+        justify-content: stretch;
+    }
+
+    .actions button {
+        width: 100%;
+        min-height: 44px;
+    }
+}

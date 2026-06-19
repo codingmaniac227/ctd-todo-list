@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router'
 import { useAuth } from '../contexts/AuthContext'
+import styles from './Page.module.css'
 
 export default function LoginPage() {
     const { login, isAuthenticated, token } = useAuth()
@@ -48,43 +49,66 @@ export default function LoginPage() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                {auth.authError && (
-                    <>
-                        <p><strong>{auth.authError}</strong></p>
-                    </>
-                )}
-                <label htmlFor="email">email</label>
-                <input
-                    id="email"
-                    name='email'
-                    value={auth.email}
-                    placeholder='Enter your email'
-                    onChange={(e) => {
-                        setAuth(prevAuth => ({
-                            ...prevAuth,
-                            email: e.target.value
-                        }))
-                    }}
-                    required
-                />
-                <label htmlFor="password">password</label>
-                <input
-                    id="password"
-                    name='password'
-                    value={auth.password}
-                    placeholder='Enter your password'
-                    onChange={(e) => {
-                        setAuth(prevAuth => ({
-                            ...prevAuth,
-                            password: e.target.value
-                        }))
-                    }}
-                    required
-                />
+            <section className={styles.page}>
+                <div className={styles.card}>
+                    <h2 className={styles.title}>Login</h2>
 
-                <button type='submit' disabled={auth.isLoggingOn}>{auth.isLoggingOn ? 'Logging in...' : 'Logon'}</button>
-            </form>
+                    <p className={styles.subtitle}>
+                        Access your personalized todo dashboard.
+                    </p>
+
+                    <form className={styles.form} onSubmit={handleSubmit}>
+                        {auth.authError && (
+                            <div className={styles.error}>
+                                {auth.authError}
+                            </div>
+                        )}
+
+                        <label htmlFor="email">Email</label>
+
+                        <input
+                            className={styles.input}
+                            id="email"
+                            name="email"
+                            value={auth.email}
+                            placeholder="Enter your email"
+                            onChange={(e) =>
+                                setAuth((prev) => ({
+                                    ...prev,
+                                    email: e.target.value,
+                                }))
+                            }
+                            required
+                        />
+
+                        <label htmlFor="password">Password</label>
+
+                        <input
+                            className={styles.input}
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={auth.password}
+                            placeholder="Enter your password"
+                            onChange={(e) =>
+                                setAuth((prev) => ({
+                                    ...prev,
+                                    password: e.target.value,
+                                }))
+                            }
+                            required
+                        />
+
+                        <button
+                            className={styles.button}
+                            type="submit"
+                            disabled={auth.isLoggingOn}
+                        >
+                            {auth.isLoggingOn ? "Logging In..." : "Login"}
+                        </button>
+                    </form>
+                </div>
+            </section>
         </>
     )
 }

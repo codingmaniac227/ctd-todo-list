@@ -1,36 +1,43 @@
+import styles from './Page.module.css'
+
 export default function AboutPage() {
     return (
         <>
-            <main>
-                <h1>About This Todo App</h1>
+            <section className={styles.page}>
+                <div className={styles.card}>
+                    <h1 className={styles.title}>About This Todo App</h1>
 
-                <section>
-                    <h2>Overview</h2>
-                    <p>This Todo app helps users organize and track their tasks as well as progress towards them while maintaining a user-friendly interface</p>
-                </section>
+                    <p className={styles.subtitle}>
+                        A React-based productivity application designed to help users manage tasks efficiently.
+                    </p>
+                </div>
 
-                <section>
+                <div className={styles.card}>
                     <h2>Features</h2>
-                    <ul>
-                        <li>Establish new todos</li>
-                        <li>Edit todos</li>
-                        <li>Mark todos as complete</li>
-                        <li>Filter and search todos</li>
-                        <li>User-authenticated routes</li>
-                        <li>Persisted data through a backend API(more on that in Node class)</li>
-                    </ul>
-                </section>
 
-                <section>
-                    <h2>Technologies Utilized</h2>
                     <ul>
-                        <li>Vite</li>
+                        <li>Create new todos</li>
+                        <li>Edit existing todos</li>
+                        <li>Mark todos as complete</li>
+                        <li>Search and filter todos</li>
+                        <li>Protected authenticated routes</li>
+                        <li>Backend API integration</li>
+                    </ul>
+                </div>
+
+                <div className={styles.card}>
+                    <h2>Technologies</h2>
+
+                    <ul>
                         <li>React</li>
                         <li>React Router</li>
-                        <li>REST API</li>
+                        <li>Vite</li>
+                        <li>REST APIs</li>
+                        <li>Context API</li>
+                        <li>useReducer</li>
                     </ul>
-                </section>
-            </main>
+                </div>
+            </section>
         </>
 
     )
