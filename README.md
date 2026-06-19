@@ -6,7 +6,7 @@ A modern React-based task management application that allows authenticated users
 
 ## Live Demo
 
-**Application:** [Add your Vercel deployment URL here]
+**Application:** https://ctd-todo-list-psi.vercel.app/login
 
 **Repository:** https://github.com/codingmaniac227/todo-list
 
@@ -59,21 +59,21 @@ A modern React-based task management application that allows authenticated users
 
 ## Screenshots
 
-### Desktop View
+### Todo Login
 
-*Add desktop screenshot here*
+![Todo Login](./public/images/app-screenshot-login.png)
+
+### Todo Dashboard
+
+![Todo Dashboard](./public/images/app-screenshot-homepage.png)
+
+### Profile View
+
+![Profile View](./public/images/app-screenshot-profile.png)
 
 ### Mobile View
 
-*Add mobile screenshot here*
-
-### Profile Dashboard
-
-*Add profile page screenshot here*
-
-### Authentication Page
-
-*Add login page screenshot here*
+![Mobile View](./public/images/screenshot-mobile.jpg)
 
 ---
 
